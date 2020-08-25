@@ -31,6 +31,7 @@ def get_filters():
             continue
 
 
+
     # get user input for month (all, january, february, ... , june)
 
     while True:
@@ -98,6 +99,7 @@ def load_data(city, month, day):
        df = df[df['month'] == month.title()]
 
 
+
     # filter by day of week if applicable
     if day.title() != 'All':
         # filter by day of week to create the new dataframe
@@ -111,14 +113,14 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    # display the most common **month**
-    most_common_month = df['month'].mode()[0]
-    print("\nThe most common month is {}.".format(most_common_month))
+    # TO DO: display the most common month
+    most_popular_month = df['month'].mode()[0]
+    print("\nThe most common month is {}.".format(most_popular_month))
 
 
-    # display the most common **day of week**
-    most_common_day = df['day'].mode()[0]
-    print("\nThe most common day is {}.".format(most_common_day))
+    # TO DO: display the most common day of week
+    most_popular_day = df['day'].mode()[0]
+    print("\nThe most common day is {}.".format(most_popluar_day))
 
     # display the most common **start hour**
     df['hour'] = df['Start Time'].dt.hour
