@@ -15,4 +15,4 @@ bikeshare_hildebrandt.py
 README.md
 
 ### Credits
-no credits yet but definitely to come when going further in the Project
+- https://gist.github.com/rochacbruno/1689c849f3ef54086772c410d77a82de#file-test-py
