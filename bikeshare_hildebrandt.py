@@ -16,8 +16,8 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
-    
-    
+
+
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         try:
@@ -29,7 +29,7 @@ def get_filters():
                 print('\nThere is no data for this city.')
         except:
             continue
-     
+
 
     # TO DO: get user input for month (all, january, february, ... , june)
 
@@ -43,7 +43,7 @@ def get_filters():
                 print("\nLet's explore the data of all months!")
                 break
             if month.strip().lower() in ('july', 'august', 'september', 'october', 'november', 'december'):
-                print("\nSorry, the dataset only includes data from January to June.")  
+                print("\nSorry, the dataset only includes data from January to June.")
             else:
                 print('\nUuuups something went wrong. This is not a month.')
         except:
@@ -65,7 +65,7 @@ def get_filters():
                 print('\nUuuups something went wrong. This is not a day of the week.')
         except:
             continue
-            
+
     print('-'*40)
     return city.lower(), month, day
 
@@ -97,7 +97,7 @@ def load_data(city, month, day):
         # use the index of the months list to get the corresponding int
        df = df[df['month'] == month.title()]
 
-      
+
 
     # filter by day of week if applicable
     if day.title() != 'All':
@@ -113,8 +113,8 @@ def time_stats(df):
     start_time = time.time()
 
     # TO DO: display the most common month
-    most_common_month = df['month'].mode()[0]
-    print("\nThe most common month is {}.".format(most_common_month))
+    most_popular_month = df['month'].mode()[0]
+    print("\nThe most common month is {}.".format(most_popular_month))
 
 
     # TO DO: display the most common day of week
@@ -125,11 +125,11 @@ def time_stats(df):
     df['hour'] = df['Start Time'].dt.hour
     popular_hour=df['hour'].mode()[0]
     print("\nThe most popular starting hour is {}.".format(popular_hour))
-   
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-  
+
 
 
 def station_stats(df):
@@ -166,10 +166,10 @@ def trip_duration_stats(df):
     df['End Time'] = pd.to_datetime(df['End Time'])
     df['diff_minutes'] = df['End Time'] - df['Start Time']
     df['diff_minutes']=df['diff_minutes']/np.timedelta64(1,'m')
-    
+
     df['diff_hours'] = df['End Time'] - df['Start Time']
     df['diff_hours']=df['diff_hours']/np.timedelta64(1,'h')
-   
+
 
 
     total_travel_time = df['diff_minutes'].sum().astype(int)
@@ -183,10 +183,10 @@ def trip_duration_stats(df):
 
     print("\nThe average travel time is {:.2f} MINUTES!".format(mean_travel_time))
     print("\nThe average travel time is {:.2f} HOURS!".format(mean_travel_time_hours))
-    
-   
+
+
     print('\n'*3)
-   
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -198,7 +198,7 @@ def user_stats(df):
     start_time = time.time()
 
     # TO DO: Display counts of user types
-    
+
     user_types = df['User Type'].value_counts()
     print("\n This is an overview of the different user types:")
     print(user_types)
@@ -235,7 +235,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-        
+
         while True:
             try:
                 raw_data = input('\nWould you like to display 5 records of raw data (yes or no)?').lower().strip()
@@ -243,8 +243,8 @@ def main():
                     i = 0
                     j = 5
                     print(df.iloc[i:j])
-                    while True: 
-                        try: 
+                    while True:
+                        try:
                             raw_data = input('\nWould you like to display another 5 records of raw data (yes or no)?')
                             if raw_data.strip().lower() == 'yes':
                                 i += 5
@@ -258,11 +258,11 @@ def main():
                             continue
                 if raw_data.strip().lower() == 'no':
                     break
-                if raw_data.strip().lower() not in ('yes', 'no'): 
+                if raw_data.strip().lower() not in ('yes', 'no'):
                     print("\nUuuups. Something went wrong. Please select either 'yes' or 'no'")
             except:
                 continue
-           
+
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
@@ -272,4 +272,3 @@ def main():
 
 if __name__ == "__main__":
 	main()
-  
